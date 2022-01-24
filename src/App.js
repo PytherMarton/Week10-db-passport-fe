@@ -6,12 +6,12 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 
 function App() {
-  const { user, setUser } = useState(null);
+  const [ user, setUser ] = useState(null);
   return (
     <div className="App">
       <Register />
-      <Login />
-      <Profile />
+      <Login user={user} setUser={setUser}/>
+      <Profile user={user} setUser={setUser}/>
     </div>
   );
 }

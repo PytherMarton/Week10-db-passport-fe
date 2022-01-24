@@ -1,27 +1,47 @@
 import { useState } from "react";
 
 function Register() {
-  const { user, setUser } = useState("");
-  const { password, setPassword } = useState("");
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const baseURL = "http://localhost/user/registeruser";
 
-  const handleChange = (event) => this.setState({ value: event.target.value });
+  const handleUserChange = (e) => setUser(e.target.value);
+
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const payload = JSON.stringify({
+      "name": user,
+      "password": password
+    })
+    const res = await fetch(baseURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: payload
+    });
+    console.log(await res.json());
+  };
 
   return (
-    <form>
-      <label for="user">User: </label>
+    <form onSubmit={submitForm}>
+      <label htmlFor="user">User: </label>
       <input
         type="text"
         name="user"
         value={user}
-        onChange={handleChange}
+        onChange={handleUserChange}
       ></input>
 
-      <label for="password">Password: </label>
+      <label htmlFor="password">Password: </label>
       <input
         type="password"
         name="password"
         value={password}
-        onChange={handleChange}
+        onChange={handlePasswordChange}
       ></input>
 
       <input type="submit" value="Submit"></input>
