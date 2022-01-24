@@ -15,6 +15,7 @@ function Register() {
       "name": user,
       "password": password
     })
+    
     const res = await fetch(baseURL, {
       method: "POST",
       mode: "cors",
