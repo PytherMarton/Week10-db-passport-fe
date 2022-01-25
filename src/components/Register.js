@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 
 function Register() {
   const [user, setUser] = useState("");
@@ -12,42 +13,54 @@ function Register() {
   const submitForm = async (e) => {
     e.preventDefault();
     const payload = JSON.stringify({
-      "name": user,
-      "password": password
-    })
-    
+      name: user,
+      password: password,
+    });
+
     const res = await fetch(baseURL, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: payload
+      body: payload,
     });
     console.log(await res.json());
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <label htmlFor="user">User: </label>
-      <input
-        type="text"
-        name="user"
-        value={user}
-        onChange={handleUserChange}
-      ></input>
+    <div>
+      <h1 className="text">Register</h1>
+      <form onSubmit={submitForm}>
+        <label htmlFor="user" className="form">
+          Username:{" "}
+        </label>
+        <input
+          type="text"
+          name="user"
+          value={user}
+          onChange={handleUserChange}
+        ></input>
 
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={handlePasswordChange}
-      ></input>
-
-      <input type="submit" value="Submit"></input>
-    </form>
+        <label htmlFor="password" className="form">
+          Password:{" "}
+        </label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePasswordChange}
+        ></input>
+        <input
+          type="submit"
+          value="Submit"
+          className="submitbtn"
+        ></input>
+      </form>
+    </div>
   );
 }
+
+// onClick={event =>  window.location.href="./cards.js"}
 
 export default Register;

@@ -29,9 +29,9 @@ function Login({ user, setUser }) {
 
   return (
     <>
-      <h1>Login</h1>
+      <h1 className="text">Login</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="user">User:</label>
+        <label htmlFor="user" className="form">Username:</label>
         <input
           type="text"
           name="user"
@@ -39,7 +39,7 @@ function Login({ user, setUser }) {
           onChange={handleUserName}
         />
 
-        <label htmlFor="password">User:</label>
+        <label htmlFor="password" className="form">User:</label>
         <input
           type="password"
           name="password"
@@ -47,7 +47,7 @@ function Login({ user, setUser }) {
           onChange={handlePassword}
         />
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="submitbtn"/>
       </form>
     </>
   );
